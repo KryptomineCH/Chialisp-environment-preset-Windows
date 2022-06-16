@@ -1,4 +1,4 @@
-# Chialisp environment preset for Windows
+# Chialisp development environment preset for Windows
  this repository functions as a preset folder in order to start new chialisp projects quickly
  
 
