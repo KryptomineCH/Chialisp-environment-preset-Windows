@@ -1,0 +1,23 @@
+; IF statements
+; -------------
+; https://chialisp.com/docs/#control-flow
+; an if statement is a list with 4 elements:
+;   - the if keyword
+;   - a condition list
+;   - a true execution list
+;   - a false execution list 
+(if (<condition>)
+    (<do this when true>)
+    (<do this when false>)
+)
+
+; Conditions 
+; ----------
+; https://chialisp.com/docs/#comparison
+; there are a range of conditions which can be checked for. The operator is at the beginning of a list
+(= "same" "same") ; both atoms(!) of this list are equal. To check if two programs/lists are equal, compare their hash!
+(not (= "same" "same")) ; not is the inversion of a comparison result
+(all (= "same" "same") (= "same" "NOTsame") (...)) ; checks if all conditions are met
+(any (= "same" "same") (= "same" "NOTsame") (...)) ; checks if any condition is met
+(> A B) ; A is bigger than B, interpretet as int (and both are atoms)
+(>s AB) ; A is greater than B, interpreting both as an array of unsigned bytes (and both are atoms)

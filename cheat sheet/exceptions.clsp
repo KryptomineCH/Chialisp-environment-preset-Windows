@@ -1,0 +1,3 @@
+; an exception is raised with x. A Message can be given
+; https://chialisp.com/docs/#control-flow
+(x "Bad Password")
