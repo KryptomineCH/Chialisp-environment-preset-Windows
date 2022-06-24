@@ -28,3 +28,6 @@ A coin can be created when you have created a puzzle (which can be solved) with 
     **`IMPORTANT:`** On the testnet, make sure that the puzzle is actually resolvable, otherwise you won't be able to unlock the coins locked balance again!
 4. Once the transaction has been confirmed, you can obtain the coin's details by using the following command:  
     `cdv rpc coinrecords --by puzhash {puzzle_hash} -nd`
+
+## Unlocking / spending a coin
+a coin can be unlocked / spent with a spend_bundle. More info in spend_bundle.md

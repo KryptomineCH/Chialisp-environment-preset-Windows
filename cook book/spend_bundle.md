@@ -49,3 +49,9 @@ a spend bundle is basically a transaction on the chia blockchain.
 **`Note:`** The aggregated Signature must at least contain the default value `0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000`  
 
 The aggregated signature is beeing generated from all the other infos.
+
+## pushing a spend bundle to the network
+1. Make sure, the spend bunle is correctly formatted:  
+    `cdv inspect spendbundles {.\spend_bundle.json} -db`
+2. Push the bundle:  
+    `cdv rpc pushtx {.\spend_bundle.json}`
