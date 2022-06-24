@@ -27,8 +27,10 @@ cdv clsp curry ./passwordprotect.clsp.hex -a 0x1234664553 -a mypassword -a 0xa11
 ```
 Arguments can only be passed in the order of the function arguments!
 
+Curry can directly output bytecode with the `-x` argument
+
 ## how to use a curried puzzle
-The puzzle from the example would have been used like this:  
+The puzzle from the example would have been used like this in a simulation:  
 ```
 brun ./passwordprotect.clsp "(0xMyPasswordHash MyPassword 0xa11ce 1000)"
 ```
