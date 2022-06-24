@@ -1,6 +1,7 @@
 {
     "recommendations": [
         "rigidity.chialisplanguage",
-        "wayou.vscode-todo-highlight"
+        "wayou.vscode-todo-highlight",
+        "yzhang.markdown-all-in-one"
     ]
 }
