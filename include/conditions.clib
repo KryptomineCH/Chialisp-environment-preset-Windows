@@ -55,7 +55,8 @@
     ;(ASSERT_SECONDS_RELATIVE seconds)
     (defconstant ASSERT_SECONDS_RELATIVE 80)
     ; This spend is only valid if the timestamp on this block is greater than the specified timestamp. 
-    ; Again, the coin's birthday and the current time are defined by the timestamp of the previous block.
+    ; FIXME: moto in devchannel on 27.06.2022: I have about 90% confidence that absolute time will be relative to 00:00:00UTC, Jan 1 1970 (aka the UNIX epoch)
+    ; TODO: needs testing!
     ; (ASSERT_SECONDS_ABSOLUTE time)
     (defconstant ASSERT_SECONDS_ABSOLUTE 81)
     ; This spend is only valid if the specified number of blocks have passed since this coin was created.
