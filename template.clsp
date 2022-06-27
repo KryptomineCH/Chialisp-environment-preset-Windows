@@ -1,0 +1,13 @@
+(mod (
+        ; inputs
+        arg1
+        arg2
+    )
+    ; includes
+    (include conditions.clib)
+    (include sha256tree.clvm)
+    ; functions
+
+    ; main
+
+)
