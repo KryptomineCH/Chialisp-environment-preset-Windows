@@ -1,7 +1,7 @@
 # compiling
 Chialisp code can be compiled into a hex file with the following command (in the virtual environment):
 ``` cmd
-csv clsp build sourcefile.clsp
+cdv clsp build sourcefile.clsp
 ```
 
 - result will be `sourcefile.clsp.hex`

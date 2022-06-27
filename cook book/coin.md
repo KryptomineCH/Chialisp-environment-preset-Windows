@@ -19,14 +19,22 @@ A coin can be spent by revealing its puzzle and providing a solution. The soluti
 
 ## Creating a coin
 A coin can be created when you have created a puzzle (which can be solved) with chialisp.
-1. You need to get the puzzlehash with the following command:  
-    `cdv clsp curry {sourcefile} {arguments} --treehash`
-2. You need to encode the puzzlehash to a coin address:  
+1. Create the puzzle and save it as `{mypuzzle}.clsp`
+2. Create test your puzzle with:
+    1. run {mypuzzle}.clsp
+    2. brun "{run result}" "({myarguments})"
+3. Compile the puzzle.clsp as stated in compiling.md (resulting in a puzzle.clsp.hex file)
+    `cdv clsp build {mypuzzle}.clsp`
+4. You need to argument and get the puzzlehash with the following command:  
+    `cdv clsp curry {sourcefile}.clsp.hex {-a augment arguments} --treehash`
+5. You need to encode the puzzlehash to a coin address:  
     `cdv encode {puzzle_hash}` (mainnet)  
     `cdv encode {puzzle_hash} --prefix txch` (testnet)
-3. You can send a transaction to the coin's wallet address obtained in step 2
+6. You can send a transaction to the coin's wallet address obtained in step 2  
+    `chia wallet send -t {coin address} -a 0.000000001`  
+    **`Note:`** 0.000000001 equals 1000 mojo  
     **`IMPORTANT:`** On the testnet, make sure that the puzzle is actually resolvable, otherwise you won't be able to unlock the coins locked balance again!
-4. Once the transaction has been confirmed, you can obtain the coin's details by using the following command:  
+7. Once the transaction has been confirmed, you can obtain the coin's details by using the following command:  
     `cdv rpc coinrecords --by puzhash {puzzle_hash} -nd`
 
 ## Unlocking / spending a coin

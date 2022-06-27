@@ -7,12 +7,12 @@ a spend bundle is basically a transaction on the chia blockchain.
     "coin_spends": [
         {
             "coin": {
-                "parent_coin_info": "",
-                "puzzle_hash": "",
+                "parent_coin_info": "13d1fc4e0ff45245fdbaa1df4cb60896111a5387ea6952e0917a2fc35b4056b5",
+                "puzzle_hash": "870a703967f4dda6428c214f01c5fb8bd093b61fde553429d7fd9bd908a96698",
                 "amount": 1000
             },
-            "puzzle_reveal": "ff02ffff01ff02ffff03ffff09ffff0bff0b80ff0580ffff01ff04ffff04ff02ffff04ff17ffff04ff2fff80808080ff8080ffff01ff08ffff018c4261642070617373776f72648080ff0180ffff04ffff0133ff018080",
-            "solution": ""
+            "puzzle_reveal": "ff02ffff01ff02ffff01ff02ffff03ffff09ffff0bff0b80ff0580ffff01ff04ffff04ff02ffff04ff17ffff04ff2fff80808080ff8080ffff01ff08ffff018c4261642070617373776f72648080ff0180ffff04ffff0133ff018080ffff04ffff01a094ac5813105c9887c263df59d0145af2b4df7b49969a08fba624e55eec25d6b1ff018080",
+            "solution": "ff8c7465737470617373776f7274ffa0cc29097b17fcecc17109d57b6509ba189aac40adc58f6fa1266f91a491ad7bdfff8203e880"
         }
     ],
     "aggregated_signature":"0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
@@ -43,7 +43,9 @@ a spend bundle is basically a transaction on the chia blockchain.
     `cdv clsp curry {sourcefile} {arguments} -x`
 - *`solution`*  
     is the byte code of the solution, generated with:  
-    `opc '({solution})'`
+    `opc '({solution})'`  
+    **`IMPORTANT:`** your address needs to be converted to a wallet puzzlehash by using:  
+    `cdv decode {MyReceivingAddress}` -> 0x needs to be appended `0x{decoderesult}`
 
 #### *`aggregated signature`* [optional]
 **`Note:`** The aggregated Signature must at least contain the default value `0xc00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000`  
