@@ -1,13 +1,22 @@
-(mod (
-        ; inputs
+(mod ( ; inputs
         arg1
         arg2
     )
-    ; includes
+; ========
+; includes
+; ========
     (include conditions.clib)
     (include sha256tree.clvm)
-    ; functions
-
-    ; main
-
+; =========
+; functions
+; =========
+    (defun-inline sample_function ()
+    
+    )
+; ====
+; main
+; ====
+    (
+        a sample_function
+    )
 )
