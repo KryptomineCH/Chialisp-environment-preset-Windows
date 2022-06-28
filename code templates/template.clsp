@@ -6,7 +6,7 @@
 ; includes
 ; ========
     (include conditions.clib)
-    (include sha256tree.clvm)
+    (include sha256tree.clib)
 ; =========
 ; functions
 ; =========
