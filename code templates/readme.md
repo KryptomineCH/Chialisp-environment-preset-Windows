@@ -35,9 +35,9 @@ cd path/to/contract/files
 chialisp compile cat2_outer_puzzle_contract.clsp -i cat_truths.clib -i condition_codes.clib -i curry-and-treehash.clib -i utility_macros.clib -o cat2_outer_puzzle_contract.hex
 ```
 
-
 3. Compile the inner puzzle with the fee mechanism.  
 *IMPORTANT:* set the fee destination address and amount!
+`chia wallet get_address`
 ```
 chialisp compile cat2_inner_puzzle_fee.clsp -i condition_codes.clib -i curry-and-treehash.clib -i utility_macros.clib -o cat2_inner_puzzle_fee.hex
 ```
