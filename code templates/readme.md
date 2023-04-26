@@ -12,7 +12,7 @@ This repository contains the necessary files to create a Chia CAT2 contract with
 
 ## Environment setup
 
-1. Install the Chia Blockchain and activate the virtual environment.
+1. Install the Chia Blockchain and activate the virtual environment. (if not already)
 ```
 git clone https://github.com/Chia-Network/chia-blockchain.git
 cd chia-blockchain
@@ -22,7 +22,8 @@ sh install.sh
 
 2. Install the Chialisp Development Environment.
 ```
-pip install chialisp-dev
+pip install --extra-index-url https://pypi.chia.net/simple/ chia-dev-tools
+cdv --version
 ```
 
 ## Preparations
