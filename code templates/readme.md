@@ -22,7 +22,7 @@ sh install.sh
 
 2. Install the Chialisp Development Environment.
 ```
-pip install --extra-index-url https://pypi.chia.net/simple/ chia-dev-tools
+sudo pip install --extra-index-url https://pypi.chia.net/simple/ chia-dev-tools
 cdv --version
 ```
 
