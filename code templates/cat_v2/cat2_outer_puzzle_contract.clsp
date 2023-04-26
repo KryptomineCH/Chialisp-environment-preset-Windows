@@ -247,6 +247,8 @@
         (c (c morphed_condition (f struct)) (c (+ output_value (f (r struct))) (r (r struct))))
     )
 
+    ;; recursively calls itself in order to process all conditions in the inner_puzzle.
+    ;; then strips the first inner condition and calls itself again to process the next inner condition
     (defun find_and_strip_tail_info (inner_conditions cat_mod_struct tail_reveal_and_solution)
         (if inner_conditions
             ;; checks if the value of the first condition in inner_conditions is equal to -113
@@ -387,7 +389,7 @@
       (c ; The 'c' function combines a list with an ASSERT_MY_COIN_ID opcode and the result of stager_two
         (list ASSERT_MY_COIN_ID my_id) ; assert that a specific coin should be spent
         (stager_two ; execute stager two with the following attributes and append to the array
-          ; Convert CAT input data into a truth data structure
+          ; Convert arguments into a truth data structure ((inner_puzzle_hash . cat_mod_struct) . (my_id . this_coin_info))
           (cat_truth_data_to_truth_struct
             inner_puzzle_hash
             cat_mod_struct

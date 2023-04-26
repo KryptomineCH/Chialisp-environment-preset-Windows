@@ -1,0 +1,106 @@
+(mod
+    ; A puzzle should commit to `SYNTHETIC_PUBLIC_KEY`
+    ;
+    ; The solution should pass in 0 for `original_public_key` if it wants to use
+    ; an arbitrary `delegated_puzzle` (and `solution`) signed by the
+    ; `SYNTHETIC_PUBLIC_KEY` (whose corresponding private key can be calculated
+    ; if you know the private key for `original_public_key`)
+    ;
+    ; Or you can solve the hidden puzzle by revealing the `original_public_key`,
+    ; the hidden puzzle in `delegated_puzzle`, and a solution to the hidden puzzle.
+
+    (SYNTHETIC_PUBLIC_KEY original_public_key delegated_puzzle solution)
+
+    ; "assert" is a macro that wraps repeated instances of "if"
+    ; usage: (assert A0 A1 ... An R)
+    ; all of A0, A1, ... An must evaluate to non-null, or an exception is raised
+    ; return the value of R (if we get that far)
+
+    (defmacro assert items
+        (if (r items)
+            (list if (f items) (c assert (r items)) (q . (x)))
+            (f items)
+        )
+    )
+
+    (include condition_codes.clib)
+
+    ;; hash a tree
+    ;; This is used to calculate a puzzle hash given a puzzle program.
+    (defun sha256tree1
+           (TREE)
+           (if (l TREE)
+               (sha256 2 (sha256tree1 (f TREE)) (sha256tree1 (r TREE)))
+               (sha256 1 TREE)
+           )
+    )
+
+    ; "is_hidden_puzzle_correct" returns true iff the hidden puzzle is correctly encoded
+
+    (defun-inline is_hidden_puzzle_correct (SYNTHETIC_PUBLIC_KEY original_public_key delegated_puzzle)
+      (=
+          SYNTHETIC_PUBLIC_KEY
+          (point_add
+              original_public_key
+              (pubkey_for_exp (sha256 original_public_key (sha256tree1 delegated_puzzle)))
+          )
+      )
+    )
+
+    (defconstant FEE_ADDRESS "txch1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+
+    (defun apply_fee (conditions)
+      (if conditions
+          (if (= (f (f conditions)) CREATE_COIN)
+              (let (
+                  recipient (f (r (f conditions)))
+                  amount (f (r (r (f conditions))))
+                  fee (/ (* amount 1) 100)
+                  new_amount (- amount fee)
+                )
+                (c
+                  (c (f (f conditions)) (c recipient (c new_amount ())))
+                  (apply_fee (r conditions))
+                )
+              )
+              (c (f conditions) (apply_fee (r conditions)))
+          )
+          ()
+      )
+    )
+
+    (defun calculate_total_fee (conditions)
+      (if conditions
+          (if (= (f (f conditions)) CREATE_COIN)
+              (+ (/ (* (f (r (r (f conditions)))) 1) 100) (calculate_total_fee (r conditions)))
+              (calculate_total_fee (r conditions))
+          )
+          0
+      )
+    )
+
+    ; "possibly_prepend_aggsig" is the main entry point
+
+    (defun-inline possibly_prepend_aggsig (SYNTHETIC_PUBLIC_KEY original_public_key delegated_puzzle conditions)
+        (if original_public_key
+            (assert
+                (is_hidden_puzzle_correct SYNTHETIC_PUBLIC_KEY original_public_key delegated_puzzle)
+                conditions
+            )
+            (c (list AGG_SIG_ME SYNTHETIC_PUBLIC_KEY (sha256tree1 delegated_puzzle)) conditions)
+        )
+    )
+
+    ; main entry point
+    (let (
+        modified_conditions (apply_fee (a delegated_puzzle solution))
+        total_fee (calculate_total_fee (a delegated_puzzle solution))
+      )
+      (possibly_prepend_aggsig
+          SYNTHETIC_PUBLIC_KEY original_public_key delegated_puzzle
+          (if (> total_fee 0)
+              (c (list CREATE_COIN FEE_ADDRESS total_fee) modified_conditions)
+              modified_conditions
+          )
+      )
+)
