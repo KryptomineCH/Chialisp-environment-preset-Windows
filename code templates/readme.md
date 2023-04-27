@@ -49,7 +49,7 @@ cdv clsp build cat2_inner_puzzle_fee.clsp -i include -o cat2_inner_puzzle_fee.he
 
 4. Compile the tail file.
 ```
-cdv clsp build cat2_tail_fixed_genesis_by_coin_id.clsp -o cat2_tail_fixed_genesis_by_coin_id.hex
+cdv clsp build cat2_tail_fixed_genesis_by_coin_id.clsp
 ```
 
 5. Now you have the compiled `cat2_outer_puzzle_contract.hex`, `cat2_inner_puzzle_fee.hex`, and `cat2_tail_fixed_genesis_by_coin_id.hex` files. You can use these files to create the final coin according to your specific requirements.
