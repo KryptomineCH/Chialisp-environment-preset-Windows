@@ -37,7 +37,7 @@ Instructions are at: https://github.com/Chia-Network/chia-dev-tools
 2. Compile the main CAT2 contract.
 ```
 cd path/to/contract/files
-chialisp compile cat2_outer_puzzle_contract.clsp -i cat_truths.clib -i condition_codes.clib -i curry-and-treehash.clib -i utility_macros.clib -o cat2_outer_puzzle_contract.hex
+cdv clsp build --include
 ```
 
 3. Compile the inner puzzle with the fee mechanism.  
