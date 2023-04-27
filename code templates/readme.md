@@ -25,10 +25,13 @@ sh install.sh
 sudo pip install --extra-index-url https://pypi.chia.net/simple/ chia-dev-tools
 cdv --version
 ```
+Note, with new versions you might need to build from the github repo. Instructions are at: https://github.com/Chia-Network/chia-dev-tools
 
 ## Preparations
 
 1. Ensure that all the files in this repository are located in the same folder.
+![image](https://user-images.githubusercontent.com/12736950/234782745-393eb3b1-1fc6-4774-9f94-e05dda5b04f1.png)
+
 
 2. Compile the main CAT2 contract.
 ```
