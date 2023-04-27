@@ -44,7 +44,7 @@ cdv clsp build --include
 *IMPORTANT:* set the fee destination address and amount!
 `chia wallet get_address`
 ```
-cdv clsp build cat2_inner_puzzle_fee.clsp -i include -o cat2_inner_puzzle_fee.hex
+cdv clsp build -i include cat2_inner_puzzle_fee.clsp
 ```
 
 4. Compile the tail file.
